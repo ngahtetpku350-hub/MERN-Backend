@@ -1,6 +1,9 @@
 import User from "./auth.model.js";
 import bcrypt from "bcryptjs";
 
+export const userList = async () => {
+  return await User.find();
+}
 export const registerUser = async (data) => {
   const { name, email, password } = data;
 
@@ -29,7 +32,7 @@ export const loginUser = async (email, password) => {
 
   const validatePassword = await bcrypt.compare(password, user.password);
   if (!validatePassword) {
-    throw new Error("Invalid email or password!");
+    throw new Error("Wrong password");
   }
 
   return user;

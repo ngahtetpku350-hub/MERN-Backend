@@ -8,10 +8,11 @@ import {
 
 export const list = async (req, res) => {
   try {
-    const posts = await getAllPosts();
+    const {search} = req.query;
+    const posts = await getAllPosts(search);
     return res.status(200).json({
       success: true,
-      message: "Success",
+      message: "success",
       data: posts,
     });
   } catch (error) {
@@ -50,7 +51,7 @@ export const create = async (req, res) => {
     return res.status(201).json({
       success: true,
       message: "Success",
-      data: post,
+      post: post,
     });
   } catch (error) {
     return res.status(500).json({
@@ -103,3 +104,5 @@ export const remove = async (req, res) => {
     });
   }
 };
+
+

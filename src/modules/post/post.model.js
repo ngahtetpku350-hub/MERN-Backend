@@ -17,6 +17,11 @@ const postSchema = new mongoose.Schema(
       ref: "Category",
       required: true,
     },
+    username: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    }
   },
   { timestamps: true },
 );

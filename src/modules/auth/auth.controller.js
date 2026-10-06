@@ -1,6 +1,20 @@
 import { generateToken } from "../../utils/generateToken.js";
-import { loginUser, registerUser } from "./auth.service.js";
+import User from "./auth.model.js";
+import { loginUser, registerUser,userList } from "./auth.service.js";
 
+export const list = async (req, res) => {
+    try {
+      const user = await userList();
+      return res.json({
+        success:"true",
+        message:"Post list",
+        user:user
+      })
+      
+    } catch (error) {
+        console.log(error.message)
+    }
+};
 export const register = async (req, res) => {
   try {
     const user = await registerUser(req.body);
@@ -44,6 +58,7 @@ export const login = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Login successful",
+      token:token,
       data: {
         id: user._id,
         name: user.name,
@@ -57,6 +72,7 @@ export const login = async (req, res) => {
     });
   }
 };
+
 export const logout = async (req, res) => {
   try {
     res.clearCookie("token");

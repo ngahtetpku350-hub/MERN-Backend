@@ -37,7 +37,7 @@ export const updateCategory = async (id, data) => {
     id,
     { name, slug },
     {
-      new: true,
+      new: true, //အဟောင်း data ရှိနေ လဲ update လုပ်လိုက်ရင် အသစ်လို့ ဘဲး မှတ်လိုက်တာ
       runValidators: true,
     },
   );
